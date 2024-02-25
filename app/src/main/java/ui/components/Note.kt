@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.topic2.android.notes.R
 //import androidx.compose.foundation.foundation.layout.*
 import androidx.compose.material.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 //import androidx.compose.ui.graphics.Color.Companion.White
@@ -47,6 +48,7 @@ fun Note() {
     ) {
 
         NoteColor(
+            modifier = Modifier.align(Alignment.CenterVertically),
             color = rwGreen,
             size = 40.dp,
             padding = 4.dp,
@@ -55,7 +57,10 @@ fun Note() {
 
         )
 
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier
+            .weight(1f)
+            .align(Alignment.CenterVertically)
+        ) {
 
             Text(text = "Заголовок", maxLines = 1)
             Text(text = "Содержимое", maxLines = 1)
@@ -64,7 +69,9 @@ fun Note() {
         Checkbox(
             checked = false,
             onCheckedChange = {},
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .align(Alignment.CenterVertically)
         )
     }
 }
