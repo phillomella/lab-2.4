@@ -74,7 +74,7 @@ private fun ScreenNavigationButton(
         0.6f
     }
 
-    val purpleColor = Color(0xFFBB86FC) // Замените это на нужный вам оттенок фиолетового
+    val purpleColor = Color(0xFFBB86FC)
 
     val textColor = if (isSelected) {
         purpleColor
