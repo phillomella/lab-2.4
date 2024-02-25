@@ -11,7 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.*
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Home
-//import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Delete
 
 import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.topic2.android.notes.routing.NotesRouter
+import com.topic2.android.notes.routing.Screen
 //import com.topic2.android.notes.routing.NotesRouter
 //import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.theme.NotesTheme
@@ -71,15 +74,17 @@ private fun ScreenNavigationButton(
         0.6f
     }
 
-    val textColor = if (isSelected){
-        colors.primary
-    } else{
+    val purpleColor = Color(0xFFBB86FC) // Замените это на нужный вам оттенок фиолетового
+
+    val textColor = if (isSelected) {
+        purpleColor
+    } else {
         colors.onSurface.copy(alpha = 0.6f)
     }
 
-    val backgroundColor = if (isSelected){
-        colors.primary.copy(alpha = 0.12f)
-    } else{
+    val backgroundColor = if (isSelected) {
+        purpleColor.copy(alpha = 0.12f)
+    } else {
         colors.surface
     }
 
@@ -158,3 +163,43 @@ fun LightDarkThemeItemPreview(){
     }
 }
 
+@Composable
+fun AppDrawer(
+    currentScreen: Screen,
+    closeDrawerAction: () -> Unit
+
+){
+    Column(modifier = Modifier.fillMaxSize()) {
+        AppDrawerHeader()
+
+        Divider(color = MaterialTheme.colors.onSurface.copy(alpha = .2f))
+
+        ScreenNavigationButton(
+            icon = Icons.Filled.Home,
+            label ="Заметки" ,
+            isSelected = currentScreen == Screen.Notes,
+            onClick = {
+                NotesRouter.navigateTo(Screen.Notes)
+                closeDrawerAction()
+            }
+        )
+        ScreenNavigationButton(
+            icon = Icons.Filled.Delete ,
+            label = "Корзина",
+            isSelected = currentScreen == Screen.Trash,
+            onClick = {
+                NotesRouter.navigateTo(Screen.Trash)
+                closeDrawerAction()
+            }
+        )
+        LightDarkThemeItem()
+
+    }
+}
+@Preview
+@Composable
+fun AppDrawerPreview(){
+    NotesTheme {
+        AppDrawer(Screen.Notes, {})
+    }
+}
