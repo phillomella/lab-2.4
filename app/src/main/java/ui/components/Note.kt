@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 //import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.Shape
+import com.topic2.android.notes.domain.model.NoteModel
 //import androidx.compose.ui.res.colorResource
 //import androidx.compose.ui.unit.min
 import com.topic2.android.notes.theme.rwGreen
@@ -35,8 +36,12 @@ import com.topic2.android.notes.theme.rwGreen
 
 
 @Composable
-@Preview
-fun Note() {
+fun Note(
+    note: NoteModel,
+    onNoteClick: (NoteModel) -> Unit = {},
+    onNoteCheckedChange: (NoteModel) -> Unit = {}
+
+) {
     val backgroundShape: Shape = RoundedCornerShape(4.dp)
     Row(modifier = Modifier
         .padding(8.dp)
@@ -75,6 +80,10 @@ fun Note() {
 @Composable
 private fun  NotePreview()
 {
-    Note()
+    Note(note = NoteModel(
+        1,
+        "Заметка 1",
+        "Содержимое 1",
+        null))
 }
 
