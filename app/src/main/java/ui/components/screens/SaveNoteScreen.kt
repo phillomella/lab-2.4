@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.ui.res.painterResource
 import com.topic2.android.notes.R
+import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.viewmodel.MainViewModel
 
 
@@ -175,4 +176,16 @@ fun ColorPickerPreview(){
             ColorModel.DEFAULT
         )
     ){}
+}
+@Preview
+@Composable
+fun SaveNoteTopAppBarPreview(){
+    SaveNoteTopAppBar(
+        isEditingMode = true,
+        onBackClick = { },
+        onSaveNoteClick = { },
+        onOpenColorPickerClick = { },
+        onDeleteNoteClick = { }
+    )
+
 }
