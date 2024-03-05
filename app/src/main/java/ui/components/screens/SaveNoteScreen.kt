@@ -21,6 +21,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.ui.res.painterResource
+import com.topic2.android.notes.R
 import com.topic2.android.notes.viewmodel.MainViewModel
 
 
@@ -108,6 +113,36 @@ private fun SaveNoteTopAppBar(
                 text ="Save Note",
                 color=MaterialTheme.colors.onPrimary
             )
+        },
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Save Note Button",
+                    tint =MaterialTheme.colors.onPrimary
+                )
+
+            }
+        },
+        actions = {
+            IconButton(onClick = onSaveNoteClick) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    tint =MaterialTheme.colors.onPrimary,
+                    contentDescription = "Save Note ",
+                )
+
+            }
+
+            IconButton(onClick = onOpenColorPickerClick) {
+                Icon(
+                    painter = painterResource(
+                        id = R.drawable.ic_baseline_color_lens_24 ),
+                    contentDescription = "Open Color Picker Button",
+                    tint =MaterialTheme.colors.onPrimary
+                )
+
+            }
         }
     )
 
