@@ -187,6 +187,27 @@ private fun SaveNoteTopAppBar(
 
 }
 
+@Composable
+private fun PickedColor(color:ColorModel){
+    Row (
+        androidx.compose.ui.Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Picked color", modifier = androidx.compose.ui.Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        NoteColor(
+            color = Color.fromHex(color.hex),
+            size = 40.dp,
+            border = 1.dp,
+            modifier = androidx.compose.ui.Modifier.padding(4.dp)
+        )
+    }
+}
+
 @Preview
 @Composable
 fun ColorItemPreview(){
@@ -215,4 +236,10 @@ fun SaveNoteTopAppBarPreview(){
         onDeleteNoteClick = { }
     )
 
+}
+@Preview
+@Composable
+fun PickedColorPreview()
+{
+    PickedColor(ColorModel.DEFAULT)
 }
