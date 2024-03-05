@@ -21,13 +21,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxWidth
+import com.topic2.android.notes.viewmodel.MainViewModel
 
 
-
-
-
-
-
+@Composable
+fun SaveNoteScreen(viewModel: MainViewModel)
+{
+    ///
+}
 
 @Composable
 private fun ColorPicker(
