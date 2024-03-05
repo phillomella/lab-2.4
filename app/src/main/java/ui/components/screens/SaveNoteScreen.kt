@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.ui.res.painterResource
 import com.topic2.android.notes.R
 import com.topic2.android.notes.viewmodel.MainViewModel
@@ -131,6 +132,16 @@ private fun SaveNoteTopAppBar(
                     tint =MaterialTheme.colors.onPrimary,
                     contentDescription = "Save Note ",
                 )
+                if (isEditingMode){
+                    IconButton(onClick = onDeleteNoteClick)
+                    {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete Note Button",
+                        tint =MaterialTheme.colors.onPrimary
+                    )
+                    }
+                }
 
             }
 
