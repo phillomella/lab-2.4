@@ -186,6 +186,26 @@ private fun SaveNoteTopAppBar(
     )
 
 }
+
+@Composable
+private fun ContentTextField(
+    modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier,
+    label: String,
+    text: String,
+    onTextChange: (String) -> Unit
+) {
+    TextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(label)},
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface
+        )
+    )
+}
 @Composable
 private fun NoteCheckOption(
     isChecked: Boolean,
@@ -269,3 +289,12 @@ fun NoteCheckOptionPreview()
 {
     NoteCheckOption( false){}
 }
+@Composable
+@Preview
+ fun ContentTextFieldPreview(){
+     ContentTextField(
+         label ="Title",
+         text = "",
+         onTextChange ={}
+     )
+ }
