@@ -186,6 +186,26 @@ private fun SaveNoteTopAppBar(
     )
 
 }
+@Composable
+private fun NoteCheckOption(
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        androidx.compose.ui.Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Can note be checked off?", modifier = androidx.compose.ui.Modifier.weight(1f)
+        )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange,
+            modifier = androidx.compose.ui.Modifier.padding(start = 8.dp)
+        )
+    }
+}
 
 @Composable
 private fun PickedColor(color:ColorModel){
@@ -242,4 +262,10 @@ fun SaveNoteTopAppBarPreview(){
 fun PickedColorPreview()
 {
     PickedColor(ColorModel.DEFAULT)
+}
+@Preview
+@Composable
+fun NoteCheckOptionPreview()
+{
+    NoteCheckOption( false){}
 }
