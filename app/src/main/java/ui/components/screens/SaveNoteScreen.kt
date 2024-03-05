@@ -1,6 +1,7 @@
 package ui.components.screens
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -61,6 +62,15 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
         mutableStateOf(false)
     }
 
+    BackHandler(
+        onBack = {
+            if(bottomDrawerState.isOpen){
+                coroutineScope.launch { bottomDrawerState.close() }
+            } else {
+                NotesRouter.navigateTo(Screen.Notes)
+            }
+        }
+    )
     Scaffold(
         topBar = {
             val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
