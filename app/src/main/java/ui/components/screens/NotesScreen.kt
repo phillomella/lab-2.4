@@ -1,8 +1,10 @@
 package ui.components.screens
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 
 @Composable
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 fun NotesScreen(
     viewModel: MainViewModel
 ) {
@@ -23,18 +26,25 @@ fun NotesScreen(
         .notesNotInTrash
         .observeAsState(listOf())
 
-    Column {
-        TopAppBar(title = "Заметки",
-            icon = Icons.Filled.List,
-            onIconClick = {}
-        )
+    Scaffold(topBar = {
+        TopAppBar(title = "Notes", icon = Icons.Filled.List, onIconClick = {})
 
-        NotesList(
-            notes = notes,
-            onNoteCheckedChange = { viewModel.onNoteCheckedChange(it) },
-            onNoteClick = { viewModel.onNoteClick(it) })
-    }
+    },
+        content = {
+            if (notes.isNotEmpty()) {
+                NotesList(
+                    notes = notes, onNoteCheckedChange = {
+                        viewModel.onNoteCheckedChange(it)
+                    },
+                    onNoteClick = { viewModel.onNoteClick(it)}
+                )
+            }
+        }
+    )
 }
+
+
+
 
 @Composable
 private fun NotesList(
