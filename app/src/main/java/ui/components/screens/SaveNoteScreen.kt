@@ -71,7 +71,7 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
                 },
                 onSaveNoteClick = { viewModel.saveNote(noteEntry) },
                 onOpenColorPickerClick = { coroutineScope.launch { bottomDrawerState.open() } },
-                onDeleteNoteClick = { viewModel.moveNoteToTrash(noteEntry) }
+                onDeleteNoteClick = {moveNoteToTrashDialogShownState.value=true}
             )
         },
         content = {
@@ -94,11 +94,39 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
                     )
                 }
             )
+                if (moveNoteToTrashDialogShownState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            moveNoteToTrashDialogShownState.value = false
+                        },
+                        title = {
+                            Text("Move note to the trash?")
+                        },
+                        text = {
+                            Text(
+                                "Are you sure want to" +
+                                        "move this note to the trash?"
+                            )
+                        },
+                        confirmButton = {
+                            TextButton(onClick = {
+                                viewModel.moveNoteToTrash(noteEntry)
+                            }) {
+                                Text("Confirm")
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = {
+                                moveNoteToTrashDialogShownState.value = false
+                            }) {
+                                Text("Dismiss")
+                            }
+                        }
+                    )
+                }
         }
     )
 }
-
-
 @Composable
 private fun ColorPicker(
     colors: List<ColorModel>,
