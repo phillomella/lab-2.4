@@ -94,6 +94,24 @@ fun ColorItem(
 
     }
 }
+@Composable
+private fun SaveNoteTopAppBar(
+    isEditingMode: Boolean,
+    onBackClick: ()->Unit,
+    onSaveNoteClick: ()->Unit,
+    onOpenColorPickerClick: ()->Unit,
+    onDeleteNoteClick: ()->Unit
+){
+    TopAppBar(
+        title = {
+            Text(
+                text ="Save Note",
+                color=MaterialTheme.colors.onPrimary
+            )
+        }
+    )
+
+}
 
 @Preview
 @Composable
