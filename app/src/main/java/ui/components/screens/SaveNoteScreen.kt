@@ -26,9 +26,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.painterResource
 import com.topic2.android.notes.R
 import com.topic2.android.notes.domain.model.NEW_NOTE_ID
@@ -53,6 +56,10 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
 
     val bottomDrawerState: BottomDrawerState = rememberBottomDrawerState(BottomDrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
+
+    val moveNoteToTrashDialogShownState: MutableState<Boolean> =rememberSaveable{
+        mutableStateOf(false)
+    }
 
     Scaffold(
         topBar = {
